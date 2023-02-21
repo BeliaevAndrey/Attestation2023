@@ -1,0 +1,134 @@
+andrew@andrewXubuntu:~/Attestation/Scripts$ vim mysql_install.sh 
+andrew@andrewXubuntu:~/Attestation/Scripts$ sudo ./mysql_install.sh 
+--2023-02-21 22:21:12--  https://dev.mysql.com/get/mysql-apt-config_0.8.24-1_all.deb
+Распознаётся dev.mysql.com (dev.mysql.com)… 184.85.150.139, 2001:2030:21:19e::2e31, 2001:2030:21:1a9::2e31
+Подключение к dev.mysql.com (dev.mysql.com)|184.85.150.139|:443... соединение установлено.
+HTTP-запрос отправлен. Ожидание ответа… 302 Moved Temporarily
+Адрес: https://repo.mysql.com//mysql-apt-config_0.8.24-1_all.deb [переход]
+--2023-02-21 22:21:12--  https://repo.mysql.com//mysql-apt-config_0.8.24-1_all.deb
+Распознаётся repo.mysql.com (repo.mysql.com)… 184.30.24.227
+Подключение к repo.mysql.com (repo.mysql.com)|184.30.24.227|:443... соединение установлено.
+HTTP-запрос отправлен. Ожидание ответа… 200 OK
+Длина: 18048 (18K) [application/x-debian-package]
+Сохранение в: ‘mysql-apt-config_0.8.24-1_all.deb’
+
+mysql-apt-config_0.8.24-1_all.deb              100%[==================================================================================================>]  17,62K  --.-KB/s    за 0s      
+
+2023-02-21 22:21:13 (276 MB/s) - ‘mysql-apt-config_0.8.24-1_all.deb’ сохранён [18048/18048]
+
+(Чтение базы данных … на данный момент установлено 235684 файла и каталога.)
+Подготовка к распаковке mysql-apt-config_0.8.24-1_all.deb …
+Распаковывается mysql-apt-config (0.8.24-1) на замену (0.8.24-1) …
+Настраивается пакет mysql-apt-config (0.8.24-1) …
+Warning: apt-key should not be used in scripts (called from postinst maintainerscript of the package mysql-apt-config)
+Warning: apt-key is deprecated. Manage keyring files in trusted.gpg.d instead (see apt-key(8)).
+OK
+Сущ:1 http://ru.archive.ubuntu.com/ubuntu jammy InRelease
+Сущ:2 http://ru.archive.ubuntu.com/ubuntu jammy-updates InRelease                                                                          
+Сущ:3 http://ru.archive.ubuntu.com/ubuntu jammy-backports InRelease                                                                        
+Сущ:4 http://repo.mysql.com/apt/ubuntu jammy InRelease                                                                                                                                   
+Сущ:5 http://security.ubuntu.com/ubuntu jammy-security InRelease                                                                                    
+Сущ:6 https://ppa.launchpadcontent.net/inkscape.dev/stable/ubuntu jammy InRelease 
+Чтение списков пакетов… Готово            
+Построение дерева зависимостей… Готово
+Чтение информации о состоянии… Готово         
+Может быть обновлено 155 пакетов. Запустите «apt list --upgradable» для их показа.
+W: http://repo.mysql.com/apt/ubuntu/dists/jammy/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+Чтение списков пакетов… Готово
+Построение дерева зависимостей… Готово
+Чтение информации о состоянии… Готово         
+Следующие пакеты устанавливались автоматически и больше не требуются:
+  gsasl-common guile-3.0-libs libcgi-fast-perl libcgi-pm-perl libevent-core-2.1-7 libevent-pthreads-2.1-7 libfcgi-bin libfcgi-perl libfcgi0ldbl libgsasl7 libhtml-template-perl libntlm0
+  libpq5 mailutils-common
+Для их удаления используйте «sudo apt autoremove».
+Будут установлены следующие дополнительные пакеты:
+  mysql-common mysql-community-client mysql-community-client-core mysql-community-client-plugins mysql-community-server mysql-community-server-core
+Следующие НОВЫЕ пакеты будут установлены:
+  mysql-client mysql-common mysql-community-client mysql-community-client-core mysql-community-client-plugins mysql-community-server mysql-community-server-core mysql-server
+Обновлено 0 пакетов, установлено 8 новых пакетов, для удаления отмечено 0 пакетов, и 155 пакетов не обновлено.
+Необходимо скачать 31,3 MB архивов.
+После данной операции объём занятого дискового пространства возрастёт на 218 MB.
+Пол:1 http://repo.mysql.com/apt/ubuntu jammy/mysql-8.0 amd64 mysql-common amd64 8.0.32-1ubuntu22.04 [68,6 kB]
+Пол:2 http://repo.mysql.com/apt/ubuntu jammy/mysql-8.0 amd64 mysql-community-client-plugins amd64 8.0.32-1ubuntu22.04 [1 437 kB]
+Пол:3 http://repo.mysql.com/apt/ubuntu jammy/mysql-8.0 amd64 mysql-community-client-core amd64 8.0.32-1ubuntu22.04 [2 184 kB]
+Пол:4 http://repo.mysql.com/apt/ubuntu jammy/mysql-8.0 amd64 mysql-community-client amd64 8.0.32-1ubuntu22.04 [2 458 kB]
+Пол:5 http://repo.mysql.com/apt/ubuntu jammy/mysql-8.0 amd64 mysql-client amd64 8.0.32-1ubuntu22.04 [67,3 kB]
+Пол:6 http://repo.mysql.com/apt/ubuntu jammy/mysql-8.0 amd64 mysql-community-server-core amd64 8.0.32-1ubuntu22.04 [25,0 MB]
+Пол:7 http://repo.mysql.com/apt/ubuntu jammy/mysql-8.0 amd64 mysql-community-server amd64 8.0.32-1ubuntu22.04 [79,1 kB]                                                                  
+Пол:8 http://repo.mysql.com/apt/ubuntu jammy/mysql-8.0 amd64 mysql-server amd64 8.0.32-1ubuntu22.04 [67,3 kB]                                                                            
+Получено 31,3 MB за 9с (3 436 kB/s)                                                                                                                                                      
+Предварительная настройка пакетов …
+Выбор ранее не выбранного пакета mysql-common.
+(Чтение базы данных … на данный момент установлено 235684 файла и каталога.)
+Подготовка к распаковке …/0-mysql-common_8.0.32-1ubuntu22.04_amd64.deb …
+Распаковывается mysql-common (8.0.32-1ubuntu22.04) …
+Выбор ранее не выбранного пакета mysql-community-client-plugins.
+Подготовка к распаковке …/1-mysql-community-client-plugins_8.0.32-1ubuntu22.04_amd64.deb …
+Распаковывается mysql-community-client-plugins (8.0.32-1ubuntu22.04) …
+Выбор ранее не выбранного пакета mysql-community-client-core.
+Подготовка к распаковке …/2-mysql-community-client-core_8.0.32-1ubuntu22.04_amd64.deb …
+Распаковывается mysql-community-client-core (8.0.32-1ubuntu22.04) …
+Выбор ранее не выбранного пакета mysql-community-client.
+Подготовка к распаковке …/3-mysql-community-client_8.0.32-1ubuntu22.04_amd64.deb …
+Распаковывается mysql-community-client (8.0.32-1ubuntu22.04) …
+Выбор ранее не выбранного пакета mysql-client.
+Подготовка к распаковке …/4-mysql-client_8.0.32-1ubuntu22.04_amd64.deb …
+Распаковывается mysql-client (8.0.32-1ubuntu22.04) …
+Выбор ранее не выбранного пакета mysql-community-server-core.
+Подготовка к распаковке …/5-mysql-community-server-core_8.0.32-1ubuntu22.04_amd64.deb …
+Распаковывается mysql-community-server-core (8.0.32-1ubuntu22.04) …
+Выбор ранее не выбранного пакета mysql-community-server.
+Подготовка к распаковке …/6-mysql-community-server_8.0.32-1ubuntu22.04_amd64.deb …
+Распаковывается mysql-community-server (8.0.32-1ubuntu22.04) …
+Выбор ранее не выбранного пакета mysql-server.
+Подготовка к распаковке …/7-mysql-server_8.0.32-1ubuntu22.04_amd64.deb …
+Распаковывается mysql-server (8.0.32-1ubuntu22.04) …
+Настраивается пакет mysql-common (8.0.32-1ubuntu22.04) …
+update-alternatives: используется /etc/mysql/my.cnf.fallback для предоставления /etc/mysql/my.cnf (my.cnf) в автоматическом режиме
+Настраивается пакет mysql-community-server-core (8.0.32-1ubuntu22.04) …
+Настраивается пакет mysql-community-client-plugins (8.0.32-1ubuntu22.04) …
+Настраивается пакет mysql-community-client-core (8.0.32-1ubuntu22.04) …
+Настраивается пакет mysql-community-client (8.0.32-1ubuntu22.04) …
+Настраивается пакет mysql-client (8.0.32-1ubuntu22.04) …
+Настраивается пакет mysql-community-server (8.0.32-1ubuntu22.04) …
+update-alternatives: используется /etc/mysql/mysql.cnf для предоставления /etc/mysql/my.cnf (my.cnf) в автоматическом режиме
+Created symlink /etc/systemd/system/multi-user.target.wants/mysql.service → /lib/systemd/system/mysql.service.
+
+Настраивается пакет mysql-server (8.0.32-1ubuntu22.04) …
+Обрабатываются триггеры для man-db (2.10.2-1) …
+Обрабатываются триггеры для libc-bin (2.35-0ubuntu3.1) …
+andrew@andrewXubuntu:~/Attestation/Scripts$ sudo systemctl status mysql.service 
+● mysql.service - MySQL Community Server
+     Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2023-02-21 22:27:15 MSK; 1min 28s ago
+       Docs: man:mysqld(8)
+             http://dev.mysql.com/doc/refman/en/using-systemd.html
+   Main PID: 11868 (mysqld)
+     Status: "Server is operational"
+      Tasks: 38 (limit: 4620)
+     Memory: 505.4M
+        CPU: 7.272s
+     CGroup: /system.slice/mysql.service
+             └─11868 /usr/sbin/mysqld
+
+фев 21 22:22:15 andrewXubuntu systemd[1]: Starting MySQL Community Server...
+фев 21 22:27:15 andrewXubuntu systemd[1]: Started MySQL Community Server.
+andrew@andrewXubuntu:~/Attestation/Scripts$ mysql -u root -p
+Enter password: 
+ERROR 1698 (28000): Access denied for user 'root'@'localhost'
+andrew@andrewXubuntu:~/Attestation/Scripts$ sudo mysql -u root
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> \q
+Bye
+andrew@andrewXubuntu:~/Attestation/Scripts$ 
