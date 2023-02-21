@@ -1,5 +1,7 @@
 USE ZooDB;
 
+-- Объединить все таблицы в одну, при этом сохраняя поля, указывающие на прошлую принадлежность к старым таблицам.
+
 DROP TABLE IF EXISTS AllAnimals;
 
 CREATE TABLE AllAnimals(
