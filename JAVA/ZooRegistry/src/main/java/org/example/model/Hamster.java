@@ -1,7 +1,6 @@
-package org.example.classes;
+package org.example.model;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class Hamster extends Pets {
 
@@ -10,7 +9,7 @@ public class Hamster extends Pets {
     }
 
     @Override
-    void addCommand() {
+    protected void addCommand() {
 
     }
 

@@ -1,4 +1,4 @@
-package org.example.classes;
+package org.example.model;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,7 +13,7 @@ public abstract class Animal {
         this.birthDay = BirthDay;
     }
 
-    abstract void addCommand();
+    protected abstract void addCommand();
     LocalDate getBirthDay() {
         return this.birthDay;
     }

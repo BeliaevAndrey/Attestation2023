@@ -1,7 +1,6 @@
-package org.example.classes;
+package org.example.model;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class Horse extends Sumpters {
 
@@ -10,7 +9,7 @@ public class Horse extends Sumpters {
     }
 
     @Override
-    void addCommand() {
+    protected void addCommand() {
 
     }
 
