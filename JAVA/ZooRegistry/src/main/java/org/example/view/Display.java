@@ -31,11 +31,12 @@ public class Display {
         });
     }
 
-    public static void printList(List<Object> incomingList) {
+    public static void printList(List<String> incomingList) {
         AtomicInteger count = new AtomicInteger(0);
         incomingList.forEach(point -> {
             System.out.printf("%4d   %s\n", count.addAndGet(1), point);
         });
+        showPrompt();
     }
 
 }

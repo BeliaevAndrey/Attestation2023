@@ -2,12 +2,12 @@ package org.example.view;
 
 public class Menu {
 
-    private String GREETING_TEXT =
+    private final String GREETING_TEXT =
             "Аттестационная работа.\n" +
             "Система учёта для питомника животных.\n" +
             "";
 
-    private String MENU_TEXT =
+    private final String START_MENU_TEXT =
             "Завести новое животное\n" +
             "Увидеть список команд, которое выполняет животное\n" +
             "Обучить животное новым командам\n";
@@ -17,7 +17,12 @@ public class Menu {
     }
 
     void mainMenu() {
-        Display.printMenu(MENU_TEXT.split("\n"));
+        Display.printMenu(START_MENU_TEXT.split("\n"));
+        Display.showPrompt();
+    }
+
+    void parametersMenu() {
+        Display.printMenu(START_MENU_TEXT.split("\n"));
         Display.showPrompt();
     }
 
@@ -27,7 +32,7 @@ public class Menu {
         test.greetings();
         test.mainMenu();
         int point = ReadKey.readInt();
-        System.out.println(test.MENU_TEXT.split("\n")[point - 1]);
+        System.out.println(test.START_MENU_TEXT.split("\n")[point - 1]);
 
     }
 }

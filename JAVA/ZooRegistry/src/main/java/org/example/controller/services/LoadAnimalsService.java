@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 
 public class LoadAnimalsService {
 
-    private Path indexDirPath;
-    private AnimalService animalService = new AnimalService();
+    private final Path indexDirPath;
+    private final AnimalService animalService = new AnimalService();
 
     public LoadAnimalsService(Path path) {
         this.indexDirPath = path;

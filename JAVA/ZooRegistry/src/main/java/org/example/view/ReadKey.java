@@ -11,7 +11,13 @@ import java.util.regex.Pattern;
 public class ReadKey {
 
     public static int readInt() {
-        return new Scanner(System.in).nextInt();
+        while (true){
+            try{
+                return Integer.parseInt(readLine());
+            } catch (NumberFormatException e) {
+                System.out.println("wrong format");
+            }
+        }
     }
 
     public static String readLine() {

@@ -1,6 +1,7 @@
 package org.example.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Animal {
@@ -13,23 +14,27 @@ public abstract class Animal {
         this.birthDay = birthDay;
     }
 
-    protected void learnCommand(){
+    protected void learnCommand() {
 
     }
 
-    public void addCommands(List<String> commands){
+    public void addCommands(List<String> commands) {
         this.commands = commands;
     }
+
     LocalDate getBirthDay() {
         return this.birthDay;
     }
-    List<String> getCommands(){
-        return this.commands;
+
+    public List<String> getCommands() {
+        if (this.commands != null)
+            return this.commands;
+        return new ArrayList<>();
     }
 
     String getAge() {
         int years = (int) getDoubleAge();
-        int months =  (int)(getDoubleAge() % 1 * 12);
+        int months = (int) (getDoubleAge() % 1 * 12);
         return String.format("Возраст: %d год(а) %d месяц(ев)", years, months);
     }
 
@@ -38,6 +43,7 @@ public abstract class Animal {
                 (LocalDate.now().getMonth().getValue() - birthDay.getMonth().getValue());
         return ttlYears / 12;
     }
+
 
     @Override
     public String toString() {
