@@ -14,13 +14,4 @@ public class Dog extends Pets {
 
     }
 
-    @Override
-    LocalDate getBirthDay() {
-        return null;
-    }
-
-    @Override
-    List<String> getCommands() {
-        return null;
-    }
 }

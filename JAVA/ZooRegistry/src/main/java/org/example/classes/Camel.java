@@ -14,13 +14,4 @@ public class Camel extends Sumpters {
 
     }
 
-    @Override
-    LocalDate getBirthDay() {
-        return null;
-    }
-
-    @Override
-    List<String> getCommands() {
-        return null;
-    }
 }
