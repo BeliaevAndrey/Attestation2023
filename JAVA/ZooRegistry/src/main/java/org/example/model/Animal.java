@@ -1,19 +1,25 @@
-package org.example.classes;
+package org.example.model;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public abstract class Animal {
-    String Name;
+    String name;
     LocalDate birthDay;
     List<String> commands = null;
 
-    Animal(String Name, LocalDate BirthDay) {
-        this.Name = Name;
-        this.birthDay = BirthDay;
+    Animal(String name, LocalDate birthDay) {
+        this.name = name;
+        this.birthDay = birthDay;
     }
 
-    abstract void addCommand();
+    protected void learnCommand(){
+
+    }
+
+    public void addCommands(List<String> commands){
+        this.commands = commands;
+    }
     LocalDate getBirthDay() {
         return this.birthDay;
     }
@@ -33,5 +39,8 @@ public abstract class Animal {
         return ttlYears / 12;
     }
 
-
+    @Override
+    public String toString() {
+        return String.format("%s  %s", name, birthDay.toString());
+    }
 }
