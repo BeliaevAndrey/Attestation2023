@@ -11,7 +11,6 @@ import java.nio.file.Paths;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class LoadAnimalsService {
@@ -40,7 +39,7 @@ public class LoadAnimalsService {
                 if (!line.isEmpty() && !line.isBlank())
                     enlistAnimal(subType, line);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -66,6 +65,14 @@ public class LoadAnimalsService {
         ZooIndexService.animalsList.add(newAnimal);
         int subTypeCount = ZooIndexService.animalSubTypes.get(subType);
         ZooIndexService.animalSubTypes.put(subType, subTypeCount + 1);
+        try (Counter cnt = new Counter()) {
+            // Счётчик с ресурсами
+            cnt.add();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (!Counter.isClosed())
+            throw new RuntimeException("COUNTER WAS NOT CLOSED!");
     }
 
 }
