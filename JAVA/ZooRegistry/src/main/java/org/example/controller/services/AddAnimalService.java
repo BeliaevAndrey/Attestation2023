@@ -10,15 +10,15 @@ import java.util.List;
 
 public class AddAnimalService {
 
-    private String chooseSubType() {
-        List<String> subTypes = new ArrayList<>(ZooIndexService.animalSubTypes.keySet());
-        Display.printList(subTypes);
-        String animal = subTypes.get(ReadKey.readInt() - 1);
-        Display.printText("Your choice: " + animal);
-        return animal;
-    }
+//    public String chooseSubType() {
+//        List<String> subTypes = ZooIndexService.getAnimalSubTypesAsList();
+//        Display.printStringList(subTypes);
+//        String animal = subTypes.get(ReadKey.readInt() - 1);
+//        Display.printText("Your choice: " + animal);
+//        return animal;
+//    }
 
-    void fillParameters(String subType) {
+    public void fillParameters(String subType) {
         Display.showPrompt("Введите Имя:");
         String name = ReadKey.readLine();
         Display.showPrompt("Введите Дату рождения (формат ГГГГ-ММ-ДД):");

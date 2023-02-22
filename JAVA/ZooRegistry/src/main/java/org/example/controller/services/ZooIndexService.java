@@ -22,6 +22,7 @@ public class ZooIndexService {
     public ZooIndexService(Path indexDirPath) {
         searchAndCreateFiles(indexDirPath);
         LoadAnimalsService las = new LoadAnimalsService(indexDirPath);
+        las.startLoadAnimals();
     }
 
     private void searchAndCreateFiles(Path path) {
@@ -34,17 +35,17 @@ public class ZooIndexService {
                 try {
                     Files.createFile(animalType);
                 } catch (Exception e) {
-                    System.out.println("!".repeat(100));
-                    System.out.println(animalType);
-                    System.out.println("!".repeat(100));
                     e.printStackTrace();
                     throw new RuntimeException(e);
                 }
             }
         });
-
-
     }
+
+    public static List<String> getAnimalSubTypesAsList() {
+        return new ArrayList<>(animalSubTypes.keySet());
+    }
+
 
     @Override
     public String toString() {  // TODO: Temporary stub. Replace with correct method(s)
@@ -53,7 +54,6 @@ public class ZooIndexService {
         animalSubTypes.keySet().forEach(animalType -> sb.append(animalType).append('\n'));
         sb.append("\nAnimals:\n");
         animalsList.forEach(animal -> {
-            System.out.println(animal);
             if(animal != null)
                 sb.append(animal);
         });

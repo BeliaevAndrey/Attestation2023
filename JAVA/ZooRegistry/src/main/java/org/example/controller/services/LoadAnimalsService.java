@@ -19,15 +19,15 @@ public class LoadAnimalsService {
 
     public LoadAnimalsService(Path path) {
         this.indexDirPath = path;
-        walkAroundAnimals();
     }
 
-    public void walkAroundAnimals() {
+    public boolean startLoadAnimals() {
         for (String subType : ZooIndexService.animalSubTypes.keySet()) {
             if (ZooIndexService.animalSubTypes.get(subType) != -1) {
                 loadAnimals(subType);
             }
         }
+        return true;
     }
 
     private void loadAnimals(String subType) {
@@ -60,7 +60,6 @@ public class LoadAnimalsService {
         if (parameters.length > 2) {
             newAnimal.addCommands(Arrays.stream(parameters).collect(Collectors.toList()));
         }
-        System.out.println(newAnimal.toString());
         ZooIndexService.animalsList.add(newAnimal);
         int subTypeCount = ZooIndexService.animalSubTypes.get(subType);
         ZooIndexService.animalSubTypes.put(subType, subTypeCount + 1);

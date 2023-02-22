@@ -10,9 +10,17 @@ import java.util.regex.Pattern;
 
 public class ReadKey {
 
+    public static int readInt(int lim) {
+        while (true) {
+            int value = readInt();
+            if (value <= lim)
+                return value;
+        }
+    }
+
     public static int readInt() {
-        while (true){
-            try{
+        while (true) {
+            try {
                 return Integer.parseInt(readLine());
             } catch (NumberFormatException e) {
                 System.out.println("wrong format");
