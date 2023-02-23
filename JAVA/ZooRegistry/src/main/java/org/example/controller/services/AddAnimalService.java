@@ -2,13 +2,10 @@ package org.example.controller.services;
 
 import org.example.controller.Controller;
 import org.example.model.Animal;
-import org.example.model.Commands;
 import org.example.view.Display;
 import org.example.view.ReadKey;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class AddAnimalService {
@@ -57,15 +54,6 @@ public class AddAnimalService {
         if (!Counter.isClosed())
             throw new RuntimeException("COUNTER WAS NOT CLOSED!");
     }
-
-//    private List<String> parseCommands(String line) throws NumberFormatException {
-//        List<String> commands = new ArrayList<>();
-//        String[] codes = line.replaceAll("\\s", "").split("\\D");
-//        Arrays.stream(codes).forEach(num -> {
-//            commands.add(Commands.values()[Integer.parseInt(num)].command);
-//        });
-//        return commands;
-//    }
 
 }
 

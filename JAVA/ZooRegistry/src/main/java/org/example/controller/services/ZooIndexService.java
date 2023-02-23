@@ -48,7 +48,7 @@ public class ZooIndexService {
 
 
     @Override
-    public String toString() {  // TODO: Temporary stub. Replace with correct method(s)
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Subtypes: \n");
         animalSubTypes.keySet().forEach(animalType -> sb.append(animalType).append('\n'));
