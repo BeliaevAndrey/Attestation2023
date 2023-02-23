@@ -137,7 +137,7 @@ apt-get purge -y zoom
 ________
 
 * 6. Диаграмма классов животных. 
-[Image](https://github.com/BeliaevAndrey/Attestation2023/tree/master/Pictures/Animals_diagram.png)
+[Image](https://github.com/BeliaevAndrey/Attestation2023/raw/master/Pictures/Animals_diagram.png)
 * 7.
 * 8.
 * 9.
