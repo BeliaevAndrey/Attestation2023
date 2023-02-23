@@ -1,6 +1,6 @@
 package org.example.controller;
 
-//import org.example.controller.services.AddAnimalService;
+import org.example.controller.services.AddAnimalService;
 import org.example.controller.services.DirWalkService;
 import org.example.controller.services.TeachAnimalService;
 import org.example.controller.services.ZooIndexService;
@@ -19,11 +19,11 @@ public class Controller {
     ZooIndexService zis;
 
     private final TeachAnimalService teachAnimalService;
-//    private final AddAnimalService addAnimalService;
+    private final AddAnimalService addAnimalService;
 
     public Controller() {
         this.teachAnimalService = new TeachAnimalService();
-//        this.addAnimalService = new AddAnimalService();
+        this.addAnimalService = new AddAnimalService();
 
     }
 
@@ -37,7 +37,7 @@ public class Controller {
         String choice = chooseSubType();
         if (choice.equalsIgnoreCase("exit"))
             return;
-//        addAnimalService.fillParameters(choice);
+        addAnimalService.fillParameters(choice);
     }
     public boolean initZoo() {
         try {

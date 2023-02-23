@@ -32,13 +32,5 @@ public class AddAnimalService {
         ZooIndexService.animalsList.add(newAnimal);
     }
 
-//    public static void main(String[] args) {    // TODO: REMOVE CRUTCH
-//        AddAnimalService aas = new AddAnimalService();
-//        aas.fillParameters(aas.chooseSubType());
-//    // Аллигатор
-//    // 2022-12-09
-//    // сидеть, лежать, голос, прыгать, лирически зывывать
-//
-//    }
 }
 

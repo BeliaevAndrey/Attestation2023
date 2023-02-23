@@ -1,10 +1,10 @@
 package org.example.controller.services;
 
 import org.example.model.Animal;
+import org.example.model.Commands;
 import org.example.view.Display;
 import org.example.view.ReadKey;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +17,7 @@ public class TeachAnimalService {
         System.out.println("animals 1 " + animals);
         Animal animal = chooseAnimal(animals);
         System.out.println(animal);
+        chooseCommand();
     }
 
     Animal chooseAnimal(List<Animal> animals) {
@@ -29,6 +30,15 @@ public class TeachAnimalService {
         if (point == 0)
             return null;
         return animals.get(point - 1);
+    }
+
+    void chooseCommand() {
+        StringBuilder sb = new StringBuilder();
+        for (Commands cmd : Commands.values()) {
+            sb.append(cmd.ordinal()).
+                    append("\t").append(cmd.command).append("\n");
+        }
+        Display.printText(sb.toString());
     }
 }
 
