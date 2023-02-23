@@ -8,5 +8,9 @@ public class Horse extends Sumpters {
         super(Name, BirthDay);
     }
 
+    public Horse(String Name, LocalDate BirthDay, int loadCapacity) {
+        super(Name, BirthDay, loadCapacity);
+    }
+
 
 }
