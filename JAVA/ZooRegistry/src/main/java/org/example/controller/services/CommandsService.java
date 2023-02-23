@@ -8,7 +8,7 @@ public class CommandsService {
 
     public static String getCommandList(){
         StringBuilder sb = new StringBuilder(
-                String.format("%4s%12s%12s\n", "#", "Command", "Alias")
+                String.format("%4s%12s%12s\n", "Код", "Команда", "Alias")
         );
         sb.append("_".repeat(28)).append("\n");
         Arrays.stream(Commands.values()).forEach(c -> {

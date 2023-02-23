@@ -3,18 +3,19 @@ package org.example.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.SimpleFormatter;
 
 public abstract class Animal {
-    String name;
-    LocalDate birthDay;
-    List<String> commands = null;
+    private final String name;
+    private final LocalDate birthDay;
+    private List<String> commands = null;
 
     Animal(String name, LocalDate birthDay) {
         this.name = name;
         this.birthDay = birthDay;
     }
 
-    protected void learnCommand() {
+    public void learnCommand() {
 
     }
 
@@ -22,9 +23,6 @@ public abstract class Animal {
         this.commands = commands;
     }
 
-    LocalDate getBirthDay() {
-        return this.birthDay;
-    }
 
     public List<String> getCommands() {
         if (this.commands != null)
@@ -45,6 +43,28 @@ public abstract class Animal {
     }
 
 
+    public String getData() {
+        StringBuilder passport = new StringBuilder("_".repeat(40));
+        passport.append("\n");
+        passport.append(String.format("%15s: ", "Имя")).append(name).append("\n");
+        passport.append(String.format("%15s: ", "Дата рождения")).append(birthDay).append("\n");
+        passport.append(String.format("%15s:\n", "Знает команды"));
+        if (commands.size() > 0)
+            commands.forEach(c -> {
+                passport.append(String.format("%38s", c)).append("\n");
+            });
+        else passport.append(String.format("%38s\n", "необученный"));
+        passport.append("_".repeat(40)).append("\n");
+        return passport.toString();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public LocalDate getBirthDay() {
+        return this.birthDay;
+    }
     @Override
     public String toString() {
         return String.format("%s\t%s\t%s",

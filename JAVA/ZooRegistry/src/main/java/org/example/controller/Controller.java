@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.controller.services.*;
+import org.example.model.Animal;
 import org.example.view.Display;
 import org.example.view.ReadKey;
 
@@ -17,12 +18,16 @@ public class Controller {
 
     private final TeachAnimalService teachAnimalService;
     private final AddAnimalService addAnimalService;
+    private FileWriteService fileWriteService;
+
+    public boolean zooInitFlag = false;
 
 
     public Controller() {
+        zooInitFlag = initZoo();
         this.teachAnimalService = new TeachAnimalService();
-        this.addAnimalService = new AddAnimalService();
-
+        this.addAnimalService = new AddAnimalService(this);
+        this.fileWriteService = new FileWriteService(this.indexDirPath);
     }
 
     public void teachAnimal(){
@@ -37,10 +42,15 @@ public class Controller {
             return;
         addAnimalService.fillParameters(choice);
     }
+
+    public void writeAnimalToFile(Animal animal){
+        fileWriteService.addAnimalToFile(animal);
+    }
     public boolean initZoo() {
         try {
             walkRootPath(Path.of(System.getProperty("user.dir")));
             zis = new ZooIndexService(indexDirPath);
+
             return true;
         } catch (Exception e) {
             return false;
