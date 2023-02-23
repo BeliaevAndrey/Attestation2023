@@ -89,7 +89,7 @@ cat FriendOfMankind.txt
 
 mkdir Animals && mv FriendOfMankind.txt Animals/
 ```
-* 3. Написан скрипт для подключения репозитория MySQL скрипт прилагается -- Linux/mysql_install.sh. Содержимое скрипта:
+* 3 Написан скрипт для подключения репозитория MySQL скрипт прилагается -- Linux/mysql_install.sh. Содержимое скрипта:
 ```bash
 #! /bin/bash
 
@@ -107,7 +107,7 @@ apt update
 apt install -y mysql-server mysql-client
 # Установка компонентов СУБД
 ```
-* 4. Написаны скрипты для установки и удаления zoom из deb-пакета скрипты прилагаются. Установка: Linux/zoom_install.sh. Содержимое скрипта:
+* 4 Написаны скрипты для установки и удаления zoom из deb-пакета скрипты прилагаются. Установка: Linux/zoom_install.sh. Содержимое скрипта:
 ```bash
 #! /bin/bash
 
@@ -131,18 +131,16 @@ apt-get purge -y zoom
 # вычистить данные пакета
 
 ```
-* 5. В директории Linux/  приложено содержимое терминала в файлах:
+* 5 В директории Linux/  приложено содержимое терминала в файлах:
     * terminal_cont_deb_package_install_remove.txt  -- установка и удаление deb-пакета
     * terminal_content_mysql_install.txt    -- установка БД mysql
 ________
 
-* 6. Диаграмма классов животных. 
+* 6 Диаграмма классов животных. 
 ![Image](https://github.com/BeliaevAndrey/Attestation2023/raw/master/Pictures/Animals_diagram.png)
-* 7.
-* 8.
-* 9.
-* 10.
-* 11.
-* 12.
+* 7, 8, 9 Создание БД животных и заполнение таблиц в скрипте SQL/Zoo.sql
+* 10 Удаление верблюдов и оббъединение лошадей с ослами в скрипте SQL/change_tables.sql
+* 11 Создание таблицы "молодые животные" с возрастом от 1 до 3 лет в скрипте SQL/young_animals.sql
+* 12 Объединение всех таблиц в одну в скрипте SQL/join_all_together.sql
 
-* 13,14,15.
+* 13, 14, 15 ![Программа для учета животных в питомнике](https://github.com/BeliaevAndrey/Attestation2023/tree/master/JAVA/ZooRegistry)
