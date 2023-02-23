@@ -58,3 +58,91 @@ ____________
 ________________
 
 
+## Решение
+
+* 1,2. Написан скрипт для заполнения и конкатенации файлов с помощью команды cat,
+скрипт прилагается -- Linux/animals.sh. Содержимое скрипта:
+```bash
+#! /bin/bash
+
+cat << EOF > Pets.txt
+Мурзик, кот, 2 года
+Мурка, кошка, 2 года
+Барбос, собака, 2 года
+Найда, собака, 2 года
+Персиваль, хомяк, 1 год
+Наполеон, хмяк, 1 год
+EOF
+
+
+cat << EOF > Sumpters.txt
+Празеодим, конь, 4 года
+Неодим, конь, 4 года
+Радон, осёл, 4 года
+Осмий, осёл, 4 года
+Кант, верблюд, 4 год
+Фейхтвагнер, вербдлюд, 4 год
+EOF
+
+cat Sumpters.txt Pets.txt > FriendOfMankind.txt
+cat FriendOfMankind.txt
+
+mkdir Animals && mv FriendOfMankind.txt Animals/
+```
+* 3. Написан скрипт для подключения репозитория MySQL скрипт прилагается -- Linux/mysql_install.sh. Содержимое скрипта:
+```bash
+#! /bin/bash
+
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.24-1_all.deb 
+# Ссылка с официального сайта на загрузку устанавливающего СУБД deb-пакета
+
+dpkg -i mysql-apt-config_*_all.deb
+# Установка deb-пакета
+# После этого в /etc/apt/sources.list.d/ появляется файл с путем к репозиторию mysql: mysql.list 
+# В /etc/apt/ прописывается файл с ключом: trusted.gpg
+
+apt update
+#  Обновление репозитория
+
+apt install -y mysql-server mysql-client
+# Установка компонентов СУБД
+```
+* 4. Написаны скрипты для установки и удаления zoom из deb-пакета скрипты прилагаются. Установка: Linux/zoom_install.sh. Содержимое скрипта:
+```bash
+#! /bin/bash
+
+wget https://zoom.us/client/latest/zoom_amd64.deb
+# Выкачивание deb-пакета
+
+dpkg -i zoom_amd64.deb
+# устнановка deb-пакета
+
+apt-get -y -f install
+# установка зависимостей
+```
+Удаление: zoom_remove.sh. Содержимое скрипта:
+```bash
+#! /bin/bash
+
+dpkg -r zoom
+# удалить пакет 
+
+apt-get purge -y zoom
+# вычистить данные пакета
+
+```
+* 5. В директории Linux/  приложено содержимое терминала в файлах:
+    * terminal_cont_deb_package_install_remove.txt  -- установка и удаление deb-пакета
+    * terminal_content_mysql_install.txt    -- установка БД mysql
+________
+
+* 6. Диаграмма классов животных. 
+[Image](Pictures/Animals_diagram.png)
+* 7.
+* 8.
+* 9.
+* 10.
+* 11.
+* 12.
+
+* 13,14,15.
