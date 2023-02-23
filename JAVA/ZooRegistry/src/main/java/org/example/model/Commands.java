@@ -8,6 +8,7 @@ public enum Commands {
     SIT("Сидеть!"),
     SERVE("Служи!"),
     WALK_BY("Рядом!"),
+    COME_HERE("Ко мне!"),
     PAW("Лапу!");
 
     public final String command;

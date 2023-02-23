@@ -1,9 +1,6 @@
 package org.example.controller;
 
-import org.example.controller.services.AddAnimalService;
-import org.example.controller.services.DirWalkService;
-import org.example.controller.services.TeachAnimalService;
-import org.example.controller.services.ZooIndexService;
+import org.example.controller.services.*;
 import org.example.view.Display;
 import org.example.view.ReadKey;
 
@@ -20,6 +17,7 @@ public class Controller {
 
     private final TeachAnimalService teachAnimalService;
     private final AddAnimalService addAnimalService;
+
 
     public Controller() {
         this.teachAnimalService = new TeachAnimalService();

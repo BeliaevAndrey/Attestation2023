@@ -1,6 +1,7 @@
 package org.example.view;
 
 import org.example.controller.Controller;
+import org.example.controller.services.CommandsService;
 import org.example.controller.services.ZooIndexService;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class Menu {
             "Вывести список всех животных\n" +
                     "Вывести даные на животное\n" +
                     "Завести новое животное\n" +
-                    "Увидеть список команд, которое выполняет животное\n" +
+                    "Увидеть список команд\n" +
                     "Обучить животное новым командам\n" +
                     "Выход\n";
 
@@ -50,6 +51,7 @@ public class Menu {
                 controller.addAnimal();
                 break;
             case 4:
+                Display.printText(CommandsService.getCommandList());
                 break;
             case 5:
                 controller.teachAnimal();

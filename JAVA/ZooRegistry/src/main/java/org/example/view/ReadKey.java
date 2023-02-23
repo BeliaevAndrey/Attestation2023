@@ -1,9 +1,6 @@
 package org.example.view;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -54,11 +51,8 @@ public class ReadKey {
                     date = String.join("-", tmp);
                 }
                 return LocalDate.parse(date);
-            } else System.out.println("wrong format");    // TODO: Change to more correct MVC-way
+            } else Display.printText("wrong format");
         }
     }
 
-    public static void main(String[] args) {        // TODO: remove crutch
-        System.out.println(readDate());
-    }
 }
