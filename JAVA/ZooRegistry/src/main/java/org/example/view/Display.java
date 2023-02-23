@@ -14,7 +14,7 @@ public class Display {
     }
 
     public static void showPrompt() {
-        System.out.print("_> ");
+        System.out.print("\n_> ");
     }
 
 
@@ -27,17 +27,19 @@ public class Display {
     }
 
     public static void printMenu(String[] menuText) {
+        System.out.println();
         AtomicInteger count = new AtomicInteger(0);
         Arrays.stream(menuText).forEach(point -> {
             System.out.printf("%4d   %s\n", count.addAndGet(1), point);
         });
+        showPrompt();
     }
 
     public static void printStringList(List<String> incomingList) {
         AtomicInteger count = new AtomicInteger(0);
-        incomingList.forEach(point -> {
-            System.out.printf("%4d   %s\n", count.addAndGet(1), point);
-        });
+        incomingList.forEach(point -> System.out.printf("%4d   %s\n",
+                count.addAndGet(1), point));
+
         showPrompt();
     }
 
@@ -46,6 +48,7 @@ public class Display {
         incomingList.forEach(point -> {
             System.out.printf("%4d   %s\n", count.addAndGet(1), point);
         });
+
         showPrompt();
     }
 

@@ -5,18 +5,10 @@ import org.example.view.Display;
 import org.example.view.ReadKey;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AddAnimalService {
 
-//    public String chooseSubType() {
-//        List<String> subTypes = ZooIndexService.getAnimalSubTypesAsList();
-//        Display.printStringList(subTypes);
-//        String animal = subTypes.get(ReadKey.readInt() - 1);
-//        Display.printText("Your choice: " + animal);
-//        return animal;
-//    }
 
     public void fillParameters(String subType) {
         Display.showPrompt("Введите Имя:");

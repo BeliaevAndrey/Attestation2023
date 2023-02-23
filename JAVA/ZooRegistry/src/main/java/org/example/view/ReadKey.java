@@ -15,6 +15,7 @@ public class ReadKey {
             int value = readInt();
             if (value <= lim)
                 return value;
+            else System.out.println("Неверный ввод -- число за пределами списка");
         }
     }
 

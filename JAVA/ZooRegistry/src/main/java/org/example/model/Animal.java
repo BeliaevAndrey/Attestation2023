@@ -47,6 +47,7 @@ public abstract class Animal {
 
     @Override
     public String toString() {
-        return String.format("%s  %s", name, birthDay.toString());
+        return String.format("%s\t%s\t%s",
+                name, birthDay.toString(), this.getClass().getSimpleName());
     }
 }

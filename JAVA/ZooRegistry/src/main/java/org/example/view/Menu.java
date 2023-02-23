@@ -37,7 +37,6 @@ public class Menu {
     void mainMenu() {
         String[] menuLine = START_MENU_TEXT.split("\n");
         Display.printMenu(menuLine);
-        Display.showPrompt();
         int point = ReadKey.readInt(menuLine.length);
         if (point == menuLine.length)
             keepWorking = false;
@@ -46,10 +45,12 @@ public class Menu {
                 Display.printAnimalList(ZooIndexService.animalsList);
                 break;
             case 2:
+                break;
             case 3:
                 controller.addAnimal();
                 break;
             case 4:
+                break;
             case 5:
                 controller.teachAnimal();
                 break;
@@ -61,16 +62,6 @@ public class Menu {
 
     void parametersMenu() {
         Display.printMenu(START_MENU_TEXT.split("\n"));
-        Display.showPrompt();
     }
-
-//    public static void main(String[] args) {    // TODO: Remove this crutch
-//        Menu test = new Menu();
-//        test.greetings();
-//        test.mainMenu();
-//        int point = ReadKey.readInt();
-//        System.out.println(test.START_MENU_TEXT.split("\n")[point - 1]);
-//
-//    }
 }
 

@@ -1,6 +1,6 @@
 package org.example.controller;
 
-import org.example.controller.services.AddAnimalService;
+//import org.example.controller.services.AddAnimalService;
 import org.example.controller.services.DirWalkService;
 import org.example.controller.services.TeachAnimalService;
 import org.example.controller.services.ZooIndexService;
@@ -19,24 +19,28 @@ public class Controller {
     ZooIndexService zis;
 
     private final TeachAnimalService teachAnimalService;
-    private final AddAnimalService addAnimalService;
+//    private final AddAnimalService addAnimalService;
 
     public Controller() {
         this.teachAnimalService = new TeachAnimalService();
-        this.addAnimalService = new AddAnimalService();
+//        this.addAnimalService = new AddAnimalService();
 
     }
 
     public void teachAnimal(){
-        teachAnimalService.startTeaching(chooseSubType());
+        String choice = chooseSubType();
+        if (choice.equalsIgnoreCase("exit"))
+            return;
+        teachAnimalService.startTeaching(choice);
     }
     public void addAnimal(){
-        addAnimalService.fillParameters(chooseSubType());
+        String choice = chooseSubType();
+        if (choice.equalsIgnoreCase("exit"))
+            return;
+//        addAnimalService.fillParameters(choice);
     }
     public boolean initZoo() {
         try {
-            walkRootPath(Path.of(System.getProperty("user.dir")));
-            zis = new ZooIndexService(indexDirPath);
             walkRootPath(Path.of(System.getProperty("user.dir")));
             zis = new ZooIndexService(indexDirPath);
             return true;
@@ -57,11 +61,13 @@ public class Controller {
     }
 
     public String chooseSubType() {
+        Display.printText(String.format("%4d   Выход", 0));
         List<String> subTypes = ZooIndexService.getAnimalSubTypesAsList();
         Display.printStringList(subTypes);
-        String animal = subTypes.get(ReadKey.readInt() - 1);
-        Display.printText("Your choice: " + animal);
-        return animal;
+        int point = ReadKey.readInt(subTypes.size());
+        if (point == 0)
+            return "exit";
+        return subTypes.get(point - 1);
     }
 
 

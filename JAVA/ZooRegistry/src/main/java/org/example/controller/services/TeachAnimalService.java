@@ -10,43 +10,26 @@ import java.util.stream.Collectors;
 
 public class TeachAnimalService {
 
-    private final String TEACH_MENU_TEXT =
-            "Выбрать животное для обучения\n" +
-                    "Увидеть список доступных команд\n" +
-                    "Выход\n";
-
     public void startTeaching(String subType) {
-        List<Animal> animals = ZooIndexService.animalsList.stream().filter(
-                animal -> animal.getClass().getSimpleName().equals(subType)).
-                collect(Collectors.toList());
-        System.out.println(animals);
+        List<Animal> animals = ZooIndexService.animalsList.stream().
+                filter(animal -> (animal.getClass().getSimpleName() + "s").equals(subType)
+                ).collect(Collectors.toList());
+        System.out.println("animals 1 " + animals);
+        Animal animal = chooseAnimal(animals);
+        System.out.println(animal);
     }
 
-    void teachMenu() {
-        String[] menuLine = TEACH_MENU_TEXT.split("\n");
-        List<String> subTypes = ZooIndexService.getAnimalSubTypesAsList();
-        Display.printMenu(menuLine);
-        Display.showPrompt();
-        int point = ReadKey.readInt();
-        if (point == menuLine.length)
-            return;
-        switch (point) {
-            case 1:
-                Display.printStringList(subTypes);
-                int typePoint = ReadKey.readInt(subTypes.size());
-                break;
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            default:
-                Display.printText("Wrong key");
-                break;
-        }
+    Animal chooseAnimal(List<Animal> animals) {
+        System.out.println("animals 2 " + animals);
+        Display.printText("Выбрать животное для обучения:");
+        Display.printText(String.format("%4d   Выход", 0));
+        Display.printAnimalList(animals);
+
+        int point = ReadKey.readInt(animals.size());
+        if (point == 0)
+            return null;
+        return animals.get(point - 1);
     }
-
-    public static void main(String[] args) {
-
-    }
-
 }
+
+
