@@ -1,27 +1,52 @@
 package org.example.controller;
 
+//import org.example.controller.services.AddAnimalService;
 import org.example.controller.services.DirWalkService;
-import org.example.controller.services.LoadAnimalsService;
+import org.example.controller.services.TeachAnimalService;
 import org.example.controller.services.ZooIndexService;
+import org.example.view.Display;
+import org.example.view.ReadKey;
 
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 public class Controller {
     private Path indexDirPath;
     String INDEX_DIR = "animals_data";
     ZooIndexService zis;
 
+    private final TeachAnimalService teachAnimalService;
+//    private final AddAnimalService addAnimalService;
+
     public Controller() {
-        walkRootPath(Path.of(System.getProperty("user.dir")));
-        zis = new ZooIndexService(indexDirPath);
+        this.teachAnimalService = new TeachAnimalService();
+//        this.addAnimalService = new AddAnimalService();
+
     }
 
-    public void printAnimalList() {
-        zis.toString();
+    public void teachAnimal(){
+        String choice = chooseSubType();
+        if (choice.equalsIgnoreCase("exit"))
+            return;
+        teachAnimalService.startTeaching(choice);
+    }
+    public void addAnimal(){
+        String choice = chooseSubType();
+        if (choice.equalsIgnoreCase("exit"))
+            return;
+//        addAnimalService.fillParameters(choice);
+    }
+    public boolean initZoo() {
+        try {
+            walkRootPath(Path.of(System.getProperty("user.dir")));
+            zis = new ZooIndexService(indexDirPath);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private void walkRootPath(Path path) {
@@ -35,18 +60,15 @@ public class Controller {
         }
     }
 
+    public String chooseSubType() {
+        Display.printText(String.format("%4d   Выход", 0));
+        List<String> subTypes = ZooIndexService.getAnimalSubTypesAsList();
+        Display.printStringList(subTypes);
+        int point = ReadKey.readInt(subTypes.size());
+        if (point == 0)
+            return "exit";
+        return subTypes.get(point - 1);
+    }
 
-//        if (path.endsWith("animals_data")) {
-//            this.indexDirPath = path;
-//            return;
-//        }
-//        if (Files.isDirectory(path)) {
-//            try (DirectoryStream<Path> dirStream = Files.newDirectoryStream(path)) {
-//                dirStream.forEach(this::walkRootPath);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
 
 }

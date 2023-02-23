@@ -8,7 +8,7 @@ import java.util.List;
 public class AnimalService {
 
     public Animal createAnimalObject(String type, String name, LocalDate birthDay) {
-        switch (type){
+        switch (type) {
             case "Cats":
                 return new Cat(name, birthDay);
             case "Dogs":
@@ -26,5 +26,11 @@ public class AnimalService {
         }
     }
 
+    public Animal createAnimalObject(String type, String name,
+                                     LocalDate birthDay, List<String> commands) {
+        Animal animal = createAnimalObject(type, name, birthDay);
+        animal.addCommands(commands);
+        return animal;
+    }
 
 }
