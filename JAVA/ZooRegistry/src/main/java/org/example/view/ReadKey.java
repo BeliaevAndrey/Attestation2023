@@ -1,9 +1,8 @@
 package org.example.view;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -53,12 +52,14 @@ public class ReadKey {
                     }
                     date = String.join("-", tmp);
                 }
-                return LocalDate.parse(date);
-            } else System.out.println("wrong format");    // TODO: Change to more correct MVC-way
+                try {
+                    return LocalDate.parse(date);
+                } catch (DateTimeException e) {
+                    Display.printText("Ошибка парсера даты:");
+                    Display.printText(e.getMessage());
+                }
+            } else Display.printText("Неверный формат, повторите пожалуйста.");
         }
     }
 
-    public static void main(String[] args) {        // TODO: remove crutch
-        System.out.println(readDate());
-    }
 }

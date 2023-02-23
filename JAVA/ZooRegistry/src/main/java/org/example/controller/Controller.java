@@ -1,17 +1,14 @@
 package org.example.controller;
 
-//import org.example.controller.services.AddAnimalService;
-import org.example.controller.services.DirWalkService;
-import org.example.controller.services.TeachAnimalService;
-import org.example.controller.services.ZooIndexService;
+import org.example.controller.services.*;
+import org.example.model.Animal;
 import org.example.view.Display;
-import org.example.view.ReadKey;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
+
 
 public class Controller {
     private Path indexDirPath;
@@ -19,30 +16,54 @@ public class Controller {
     ZooIndexService zis;
 
     private final TeachAnimalService teachAnimalService;
-//    private final AddAnimalService addAnimalService;
+    private final AddAnimalService addAnimalService;
+    private final FileWriteService fileWriteService;
+
+    public boolean zooInitFlag;
+
 
     public Controller() {
-        this.teachAnimalService = new TeachAnimalService();
-//        this.addAnimalService = new AddAnimalService();
-
+        zooInitFlag = initZoo();
+        this.teachAnimalService = new TeachAnimalService(this);
+        this.addAnimalService = new AddAnimalService(this);
+        this.fileWriteService = new FileWriteService(this.indexDirPath);
     }
 
-    public void teachAnimal(){
-        String choice = chooseSubType();
+    public void teachAnimal() {
+        Animal animal = ChooseAnimalService.chooseAnimal();
+        if (animal == null)
+            return;
+        teachAnimalService.startTeaching(animal);
+    }
+
+    public void addAnimal() {
+        String choice = ChooseAnimalService.chooseSubType();
         if (choice.equalsIgnoreCase("exit"))
             return;
-        teachAnimalService.startTeaching(choice);
+        addAnimalService.fillParameters(choice);
     }
-    public void addAnimal(){
-        String choice = chooseSubType();
-        if (choice.equalsIgnoreCase("exit"))
+
+    public void showAnimalData() {
+        Animal animal = ChooseAnimalService.chooseAnimal();
+        if (animal == null)
             return;
-//        addAnimalService.fillParameters(choice);
+        Display.printText(animal.getData());
     }
+
+    public void writeAnimalToFile(Animal animal) {
+        fileWriteService.addAnimalToFile(animal);
+    }
+
+    public void updateAnimalInFile(Animal animal, String oldRecord) {
+        System.out.println(" ".repeat(30) + oldRecord);
+        fileWriteService.fileUpdate(animal, oldRecord);
+    }
+
     public boolean initZoo() {
         try {
             walkRootPath(Path.of(System.getProperty("user.dir")));
             zis = new ZooIndexService(indexDirPath);
+
             return true;
         } catch (Exception e) {
             return false;
@@ -59,16 +80,5 @@ public class Controller {
             }
         }
     }
-
-    public String chooseSubType() {
-        Display.printText(String.format("%4d   Выход", 0));
-        List<String> subTypes = ZooIndexService.getAnimalSubTypesAsList();
-        Display.printStringList(subTypes);
-        int point = ReadKey.readInt(subTypes.size());
-        if (point == 0)
-            return "exit";
-        return subTypes.get(point - 1);
-    }
-
 
 }
