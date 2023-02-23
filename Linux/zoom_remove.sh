@@ -1,3 +1,9 @@
+#! /bin/bash
+
 dpkg -r zoom
+# удалить пакет 
+
 apt-get purge -y zoom
-apt-get -y autoremove
+# вычистить данные пакета
+
+

@@ -6,9 +6,10 @@ CREATE TABLE YoungAnimals(
     Animal_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     Name VARCHAR(20) NOT NULL,
     BirthDay DATE NOT NULL,
+    Command VARCHAR(20),
     Age FLOAT
 )
-SELECT * FROM (SELECT Name, BirthDay, ROUND((YEAR(current_date()) - YEAR(Birthday)) + (MONTH(current_date() - MONTH(Birthday))/12),2) AS Age 
+SELECT * FROM (SELECT Name, BirthDay, Command, ROUND((YEAR(current_date()) - YEAR(Birthday)) + (MONTH(current_date() - MONTH(Birthday))/12),2) AS Age 
     FROM (
         SELECT * FROM AllSumpters UNION 
         SELECT * FROM Cats UNION 
