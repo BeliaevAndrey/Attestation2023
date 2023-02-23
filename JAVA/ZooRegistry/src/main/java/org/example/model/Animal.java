@@ -15,8 +15,14 @@ public abstract class Animal {
         this.birthDay = birthDay;
     }
 
-    public void learnCommand() {
-
+    public boolean learnCommand(List<String> newCommands) {
+        if (this.commands == null)
+            this.commands = new ArrayList<>();
+        if(newCommands.size() > 0) {
+            this.commands.addAll(newCommands);
+            return true;
+        }
+        return false;
     }
 
     public void addCommands(List<String> commands) {
@@ -49,7 +55,7 @@ public abstract class Animal {
         passport.append(String.format("%15s: ", "Имя")).append(name).append("\n");
         passport.append(String.format("%15s: ", "Дата рождения")).append(birthDay).append("\n");
         passport.append(String.format("%15s:\n", "Знает команды"));
-        if (commands.size() > 0)
+        if (commands != null && commands.size() > 0)
             commands.forEach(c -> {
                 passport.append(String.format("%38s", c)).append("\n");
             });
@@ -58,6 +64,14 @@ public abstract class Animal {
         return passport.toString();
     }
 
+    public String getFileRecordLine(){
+        StringBuilder animalLine = new StringBuilder(getName());
+        animalLine.append(";");
+        animalLine.append(getBirthDay()).append(";");
+        getCommands().forEach(command -> animalLine.append(command).append(";"));
+        animalLine.append("\n");
+        return animalLine.toString();
+    }
     public String getName() {
         return name;
     }
@@ -65,9 +79,12 @@ public abstract class Animal {
     public LocalDate getBirthDay() {
         return this.birthDay;
     }
+
     @Override
     public String toString() {
         return String.format("%s\t%s\t%s",
                 name, birthDay.toString(), this.getClass().getSimpleName());
     }
+
+
 }

@@ -30,7 +30,7 @@ public class AddAnimalService {
         while (true) {
             try {
                 String commands = ReadKey.readLine();
-                commandsList = parseCommands(commands);
+                commandsList = CommandsService.parseCommands(commands);
                 break;
             }catch (Exception e) {
                 Display.printText("Неверый ввод, повторите пожалуйста.");
@@ -50,21 +50,22 @@ public class AddAnimalService {
             controller.writeAnimalToFile(newAnimal);
             Display.printText("Сохранено.");
         } else if (answer.equalsIgnoreCase("N") || answer.equalsIgnoreCase("NO")) {
-            Display.printText("Ok.");
+            Display.printText("Ok. Changes Dropped.");
+        }else {
+            Display.printText("Неверный ввод");
         }
         if (!Counter.isClosed())
             throw new RuntimeException("COUNTER WAS NOT CLOSED!");
     }
 
-    private List<String> parseCommands(String line) throws NumberFormatException {
-        List<String> commands = new ArrayList<>();
-        String[] codes = line.replaceAll("\\s", "").split("\\D");
-        Arrays.stream(codes).forEach(num -> {
-            commands.add(Commands.values()[Integer.parseInt(num)].command);
-        });
-        return commands;
-
-    }
+//    private List<String> parseCommands(String line) throws NumberFormatException {
+//        List<String> commands = new ArrayList<>();
+//        String[] codes = line.replaceAll("\\s", "").split("\\D");
+//        Arrays.stream(codes).forEach(num -> {
+//            commands.add(Commands.values()[Integer.parseInt(num)].command);
+//        });
+//        return commands;
+//    }
 
 }
 

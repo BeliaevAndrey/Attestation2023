@@ -2,6 +2,7 @@ package org.example.controller.services;
 
 import org.example.model.Animal;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,18 +22,36 @@ public class FileWriteService {
     public void addAnimalToFile(Animal animal) {
         String fileName = animal.getClass().getSimpleName() + "s";
         Path filePath = Paths.get(indexDirPath.toString(), fileName);
-        StringBuilder animalLine = new StringBuilder(animal.getName());
-        animalLine.append(";");
-        animalLine.append(animal.getBirthDay()).append(";");
-        animal.getCommands().forEach(command -> {
-            animalLine.append(command).append(";");
-
-        });
+        String animalLine = animal.getFileRecordLine();
         try (BufferedWriter bfw = Files.newBufferedWriter(filePath, StandardOpenOption.APPEND)) {
-            bfw.append("\n").write(animalLine.toString());
+            bfw.write(animalLine);
             bfw.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void fileUpdate(Animal animal, String oldRecord) {
+        String fileName = animal.getClass().getSimpleName() + "s";
+        Path filePath = Paths.get(indexDirPath.toString(), fileName);
+        StringBuilder buffer = new StringBuilder();
+        try (BufferedReader bufferedReader = Files.newBufferedReader(filePath)) {
+            while (bufferedReader.ready()) {
+                String tmp = bufferedReader.readLine();
+                if (tmp.equals(oldRecord.strip())) {
+                    tmp = animal.getFileRecordLine();
+                }
+                buffer.append(tmp).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try (BufferedWriter bufferedWriter = Files.newBufferedWriter(filePath)) {
+            bufferedWriter.write(buffer.toString());
+            bufferedWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

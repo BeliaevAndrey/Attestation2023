@@ -4,12 +4,9 @@ import org.example.controller.Controller;
 import org.example.controller.services.CommandsService;
 import org.example.controller.services.ZooIndexService;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Menu {
 
-    private final Controller controller = new Controller();
+    private final Controller controller;
     private boolean keepWorking = true;
     private final static String GREETING_TEXT =
             "Аттестационная работа.\n" +
@@ -20,16 +17,19 @@ public class Menu {
             "Вывести список всех животных\n" +
                     "Вывести даные на животное\n" +
                     "Завести новое животное\n" +
-                    "Увидеть список команд\n" +
                     "Обучить животное новым командам\n" +
+                    "Увидеть список всех доступных команд\n" +
                     "Выход\n";
 
+    public Menu(Controller controller) {
+        this.controller = controller;
+    }
 
-    public static void mainLoop() {
-        Menu menu = new Menu();
+
+    public void mainLoop() {
         Display.printText(GREETING_TEXT);
-        while (menu.keepWorking) {
-            menu.mainMenu();
+        while (this.keepWorking) {
+            mainMenu();
         }
         Display.printText("Finishing...\nGood Bye!");
     }
@@ -46,24 +46,19 @@ public class Menu {
                 Display.printAnimalList(ZooIndexService.animalsList);
                 break;
             case 2:
+                controller.showAnimalData();
                 break;
             case 3:
                 controller.addAnimal();
                 break;
-            case 4:
+            case 5:
                 Display.printText(CommandsService.getCommandList());
                 break;
-            case 5:
+            case 4:
                 controller.teachAnimal();
                 break;
             default:
                 break;
         }
     }
-
-
-    void parametersMenu() {
-        Display.printMenu(START_MENU_TEXT.split("\n"));
-    }
 }
-

@@ -2,7 +2,9 @@ package org.example.controller.services;
 
 import org.example.model.Commands;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class CommandsService {
 
@@ -19,4 +21,14 @@ public class CommandsService {
         sb.append("_".repeat(28)).append("\n");
         return sb.toString();
     }
+
+    public static List<String> parseCommands(String line) throws NumberFormatException {
+        List<String> commands = new ArrayList<>();
+        String[] codes = line.replaceAll("\\s", "").split("\\D");
+        Arrays.stream(codes).forEach(num -> {
+            commands.add(Commands.values()[Integer.parseInt(num)].command);
+        });
+        return commands;
+    }
+
 }

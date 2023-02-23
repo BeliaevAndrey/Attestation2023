@@ -1,44 +1,54 @@
 package org.example.controller.services;
 
+import org.example.controller.Controller;
 import org.example.model.Animal;
-import org.example.model.Commands;
 import org.example.view.Display;
 import org.example.view.ReadKey;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class TeachAnimalService {
 
-    public void startTeaching(String subType) {
-        List<Animal> animals = ZooIndexService.animalsList.stream().
-                filter(animal -> (animal.getClass().getSimpleName() + "s").equals(subType)
-                ).collect(Collectors.toList());
-        System.out.println("animals 1 " + animals);
-        Animal animal = chooseAnimal(animals);
-        System.out.println(animal);
-        chooseCommand();
+    private Controller controller;
+
+    public TeachAnimalService(Controller controller) {
+        this.controller = controller;
     }
 
-    Animal chooseAnimal(List<Animal> animals) {
-        System.out.println("animals 2 " + animals);
-        Display.printText("Выбрать животное для обучения:");
-        Display.printText(String.format("%4d   Выход", 0));
-        Display.printAnimalList(animals);
-
-        int point = ReadKey.readInt(animals.size());
-        if (point == 0)
-            return null;
-        return animals.get(point - 1);
-    }
-
-    void chooseCommand() {
-        StringBuilder sb = new StringBuilder();
-        for (Commands cmd : Commands.values()) {
-            sb.append(cmd.ordinal()).
-                    append("\t").append(cmd.command).append("\n");
+    public void startTeaching(Animal animal) {
+        Display.printText(animal.getData());
+        String oldRecord = animal.getFileRecordLine();
+        if (animal.learnCommand(chooseCommand())) {
+            Display.printText(animal.getData());
+            Display.showPrompt("Сохранить на диск (команды сохранятся до конца сессии)? [Y/N]");
+            String answer = ReadKey.readLine();
+            if (answer.equalsIgnoreCase("Y") || answer.equalsIgnoreCase("YES")) {
+                controller.updateAnimalInFile(animal, oldRecord);
+                Display.printText("Сохранено.");
+            } else if (answer.equalsIgnoreCase("N") || answer.equalsIgnoreCase("NO")) {
+                Display.printText("Ok. Changes Dropped.");
+            } else {
+                Display.printText("Неверный ввод");
+            }
         }
-        Display.printText(sb.toString());
+
+    }
+
+    private List<String> chooseCommand() {
+        List<String> commandsList;
+        Display.printText(CommandsService.getCommandList());
+        Display.showPrompt("Введите коды команды, через зяпятую (exit -- отмена):");
+        while (true) {
+            try {
+                String commands = ReadKey.readLine();
+                commandsList = CommandsService.parseCommands(commands);
+                break;
+            } catch (Exception e) {
+                Display.printText("Неверый ввод, повторите пожалуйста.");
+            }
+        }
+        return commandsList;
+
     }
 }
 
