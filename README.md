@@ -143,4 +143,4 @@ ________
 * 11 Создание таблицы "молодые животные" с возрастом от 1 до 3 лет в скрипте SQL/young_animals.sql
 * 12 Объединение всех таблиц в одну в скрипте SQL/join_all_together.sql
 
-* 13, 14, 15 ![Программа для учета животных в питомнике](https://github.com/BeliaevAndrey/Attestation2023/tree/master/JAVA/ZooRegistry)
+* 13, 14, 15 ![Программа для учета животных в питомнике: JAVA/ZooRegistry](https://github.com/BeliaevAndrey/Attestation2023/tree/master/JAVA/ZooRegistry/src/main/java/org/example)
